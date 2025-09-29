@@ -84,6 +84,11 @@
     <div class="dropdown" id="glutenFilter"><div class="dropdown-btn">Gluten...</div></div>
   </div>
 
+  <!-- BARRA DI RICERCA -->
+  <div class="filters">
+    <input type="text" id="searchInput" placeholder="Cerca locale..." oninput="cercaPerNome()">
+  </div>
+
   <!-- Pulsanti principali -->
   <div class="filter-buttons">
     <button onclick="filtra()">Filtra</button>
@@ -177,6 +182,13 @@
       (gf.length === 0 || gf.includes(l.glutenFree))
     );
     mostra(f);
+  }
+
+  // --- Ricerca per nome ---
+  function cercaPerNome() {
+    const query = document.getElementById("searchInput").value.toLowerCase().trim();
+    const filtrati = locali.filter(l => l.nome.toLowerCase().includes(query));
+    mostra(filtrati);
   }
 
   // --- Gestione dropdown ---
